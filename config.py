@@ -32,7 +32,7 @@ PROFIT_ADD_THRESHOLD_PCT = float(os.getenv("PROFIT_ADD_THRESHOLD_PCT", "0.40"))
 TRAILING_GIVEBACK_PCT = float(os.getenv("TRAILING_GIVEBACK_PCT", "0.20"))
 MAX_LOSS_PCT = float(os.getenv("MAX_LOSS_PCT", "0.30"))
 
-KLINE_INTERVAL = os.getenv("KLINE_INTERVAL", "5m")
+KLINE_INTERVAL = os.getenv("KLINE_INTERVAL", "15m")
 KLINE_LIMIT = int(os.getenv("KLINE_LIMIT", "200"))
 
 TREND_EMA_FAST = int(os.getenv("TREND_EMA_FAST", "12"))
