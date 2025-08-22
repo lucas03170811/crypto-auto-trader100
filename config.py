@@ -17,11 +17,11 @@ SCAN_INTERVAL = int(os.getenv("SCAN_INTERVAL", "60"))
 
 SYMBOL_POOL: List[str] = [
     "BTCUSDT","ETHUSDT","SOLUSDT","XRPUSDT","ADAUSDT",
-    "DOGEUSDT","1000PEPEUSDT", "SUIUSDT","SEIUSDT",
+    "DOGEUSDT","1000PEPEUSDT"
 
 ]
 
-EQUITY_RATIO = float(os.getenv("EQUITY_RATIO", "0.02"))
+EQUITY_RATIO = float(os.getenv("EQUITY_RATIO", "0.2"))
 LEVERAGE = int(os.getenv("LEVERAGE", "30"))
 MAX_PYRAMID = int(os.getenv("MAX_PYRAMID", "8"))
 
@@ -35,21 +35,21 @@ MAX_LOSS_PCT = float(os.getenv("MAX_LOSS_PCT", "0.30"))
 KLINE_INTERVAL = os.getenv("KLINE_INTERVAL", "15m")
 KLINE_LIMIT = int(os.getenv("KLINE_LIMIT", "200"))
 
-TREND_EMA_FAST = int(os.getenv("TREND_EMA_FAST", "12"))
-TREND_EMA_SLOW = int(os.getenv("TREND_EMA_SLOW", "26"))
+TREND_EMA_FAST = int(os.getenv("TREND_EMA_FAST", "20"))
+TREND_EMA_SLOW = int(os.getenv("TREND_EMA_SLOW", "50"))
 MACD_SIGNAL = int(os.getenv("MACD_SIGNAL", "9"))
 
 REVERT_RSI_PERIOD = int(os.getenv("REVERT_RSI_PERIOD", "14"))
-REVERT_RSI_OVERSOLD = int(os.getenv("REVERT_RSI_OVERSOLD", "40"))
-REVERT_RSI_OVERBOUGHT = int(os.getenv("REVERT_RSI_OVERBOUGHT", "60"))
+REVERT_RSI_OVERSOLD = int(os.getenv("REVERT_RSI_OVERSOLD", "35"))
+REVERT_RSI_OVERBOUGHT = int(os.getenv("REVERT_RSI_OVERBOUGHT", "65"))
 BOLL_WINDOW = int(os.getenv("BOLL_WINDOW", "20"))
-BOLL_STDDEV = float(os.getenv("BOLL_STDDEV", "2.0"))
+BOLL_STDDEV = float(os.getenv("BOLL_STDDEV", "2.5"))
 
 PYRAMID_BREAKOUT_ENABLED = os.getenv("PYRAMID_BREAKOUT_ENABLED", "true").lower() in ("1","true","yes")
 PYRAMID_BREAKOUT_LOOKBACK = int(os.getenv("PYRAMID_BREAKOUT_LOOKBACK", "20"))
 
 VOLUME_MIN_USD = float(os.getenv("VOLUME_MIN_USD", "3000000"))
-FUNDING_RATE_MIN = float(os.getenv("FUNDING_RATE_MIN", "-0.03"))
+FUNDING_RATE_MIN = float(os.getenv("FUNDING_RATE_MIN", "-0.02"))
 
 DEBUG_MODE = os.getenv("DEBUG_MODE", "true").lower() in ("1","true","yes")
 
