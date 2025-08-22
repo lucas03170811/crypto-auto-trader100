@@ -3,7 +3,7 @@ from config import API_KEY, API_SECRET, SYMBOL_POOL, SCAN_INTERVAL, DEBUG_MODE, 
 from exchange.binance_client import BinanceClient
 from risk.risk_mgr import RiskManager
 from filters.symbol_filter import shortlist
-from strategies.trend import generate_trend_signal, should_pyramid
+from strategies.trend import generate_trend_signal
 from strategies.revert import generate_revert_signal
 import config
 
@@ -26,9 +26,7 @@ async def manage_symbol(client, rm, symbol):
         else:
             print(f"[ORDER FAIL] {symbol}")
 
-        if await should_pyramid(client, symbol, side_long=(sig == "LONG")):
-            await rm.add_pyramid(symbol, sig)
-
+        # 已移除「突破前高/低加碼」；加碼只由 RiskManager 的「獲利加碼」機制處理
     except Exception as e:
         print(f"[ERROR] manage_symbol {symbol}: {e}\n{traceback.format_exc()}")
 
