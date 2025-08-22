@@ -1,12 +1,5 @@
-# main.py
-import asyncio
-import time
-import traceback
-
-from config import (
-    API_KEY, API_SECRET, SYMBOL_POOL, SCAN_INTERVAL, DEBUG_MODE,
-    LEVERAGE
-)
+import asyncio, time, traceback
+from config import API_KEY, API_SECRET, SYMBOL_POOL, SCAN_INTERVAL, DEBUG_MODE, LEVERAGE
 from exchange.binance_client import BinanceClient
 from risk.risk_mgr import RiskManager
 from filters.symbol_filter import shortlist
@@ -33,7 +26,6 @@ async def manage_symbol(client, rm, symbol):
         else:
             print(f"[ORDER FAIL] {symbol}")
 
-        # 突破型加碼（統一走 RiskManager 管控層數）
         if await should_pyramid(client, symbol, side_long=(sig == "LONG")):
             await rm.add_pyramid(symbol, sig)
 
@@ -41,7 +33,8 @@ async def manage_symbol(client, rm, symbol):
         print(f"[ERROR] manage_symbol {symbol}: {e}\n{traceback.format_exc()}")
 
 async def scanner():
-    client = BinanceClient(API_KEY, API_SECRET, testnet=config.TESTNET)  # 改成讀 config.TESTNET
+    print("Starting Container")
+    client = BinanceClient(API_KEY, API_SECRET, testnet=config.TESTNET)
     rm = RiskManager(client)
 
     while True:
@@ -52,14 +45,12 @@ async def scanner():
             print(f"[ERROR] shortlist: {e}")
             candidates = SYMBOL_POOL
 
-        # 1) 掃描與進場 / 突破加碼
         try:
             tasks = [ manage_symbol(client, rm, s) for s in candidates ]
             await asyncio.gather(*tasks, return_exceptions=True)
         except Exception as e:
             print(f"[ERROR] scanner (manage_symbol): {e}\n{traceback.format_exc()}")
 
-        # 2) 監控已持倉（移動停利、停損、獲利加碼滾倉）
         try:
             await rm.monitor_all(SYMBOL_POOL)
         except Exception as e:
