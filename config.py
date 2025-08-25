@@ -29,7 +29,7 @@ PROFIT_ADD_THRESHOLD_PCT = float(os.getenv("PROFIT_ADD_THRESHOLD_PCT", "0.40"))
 
 # ===== 既有（沿用）：移動停利（回撤%）與最大虧損% =====
 TRAILING_GIVEBACK_PCT = float(os.getenv("TRAILING_GIVEBACK_PCT", "0.20"))
-MAX_LOSS_PCT = float(os.getenv("MAX_LOSS_PCT", "0.30"))
+MAX_LOSS_PCT = float(os.getenv("MAX_LOSS_PCT", "0.65"))
 
 KLINE_INTERVAL = os.getenv("KLINE_INTERVAL", "15m")
 KLINE_LIMIT = int(os.getenv("KLINE_LIMIT", "200"))
